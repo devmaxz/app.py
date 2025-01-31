@@ -1,33 +1,32 @@
 import streamlit as st
-import numpy as np
+
 import pandas as pd
-import matplotlib.pyplot as plt
+import numpy as np
 
-# Titels en tekst
-st.title('Welkom op mijn Streamlit Website!')
-st.write('Dit is een eenvoudige webapplicatie die gebruik maakt van Streamlit.')
+# Set page title
+st.set_page_config(page_title="My Streamlit App", layout="wide")
 
-# Gebruikersinput: tekst invoeren
-naam = st.text_input('Wat is je naam?', 'Jouw naam hier')
+# Sidebar Navigation
+st.sidebar.title("Navigation")
+page = st.sidebar.radio("Go to", ["Home", "Data Visualization", "About"])
 
-st.write(f'Hallo, {naam}!')
+# Home Page
+if page == "Home":
+    st.title("🏠 Welcome to My Streamlit App")
+    st.write("Use the sidebar to navigate between pages.")
 
-# Gebruikersinput: getal invoeren
-getal = st.slider('Kies een getal', 0, 100, 25)
-st.write(f'Je gekozen getal is: {getal}')
+# Data Visualization Page
+elif page == "Data Visualization":
+    st.title("📊 Data Visualization")
 
-# Maak een eenvoudige grafiek
-st.write('Hier is een grafiek van een lineaire functie.')
+    
+    
 
-x = np.linspace(0, 10, 100)
-y = getal * x
+# About Page
+elif page == "About":
+    st.title("ℹ️ About This App")
+    st.write("This is a simple Streamlit app with navigation.")
 
-plt.plot(x, y)
-st.pyplot(plt)
-
-# Data weergeven in een tabel
-data = pd.DataFrame({
-    'Getallen': x,
-    'Functie': y
-})
-st.write('Bekijk de onderstaande tabel:', data)
+# Footer
+st.sidebar.markdown("---")
+st.sidebar.write("Developed with ❤️ using Streamlit")
